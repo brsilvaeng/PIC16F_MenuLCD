@@ -1,5 +1,5 @@
 # PIC16F_MenuLCD
-Sistema de controle de senhas para atendimento bancário.<br/>
+Exemplo de projeto com microcontrolador PIC16F controlando um menu de opções em um LCD
 <br/>
 Utilizados:
  - IDE: MPLAB X IDE v4.05
