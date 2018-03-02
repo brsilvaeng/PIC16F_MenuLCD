@@ -1,5 +1,8 @@
 # PIC16F_MenuLCD
-Exemplo de projeto com microcontrolador PIC16F controlando um menu de opções em um LCD
+Sistema de controle de senhas para atendimento bancário.<br/>
+<br/>
+Utilizados:
+ - IDE: MPLAB X IDE v4.05
+ - Compilador: XC8 v1.44
 
-IDE: MPLAB X IDE v4.05
-compilador: XC8 v1.44
+
