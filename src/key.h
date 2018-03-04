@@ -25,8 +25,8 @@
 
 #define KEY_DEBOUNCE                    100
 
-#define KEY_NOT_PRESS                   0
-#define KEY_PRESS                       1
+#define KEY_NOT_PRESS                   1
+#define KEY_PRESS                       0
 
 #define KEY_CIMA_VALUE_NOT_PRESS        0x00
 #define KEY_CIMA_VALUE_PRESS            0x01

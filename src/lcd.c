@@ -2,26 +2,6 @@
 #include "delay.h"
 #include <string.h>
 
-
-#if (!defined(LCD_TRIS_EN) || !defined(LCD_PORT_EN))
-    #error "Defina LCD_TRIS_EN e LCD_PORT_EN em 'lcd.h'"
-#endif
-#if (!defined(LCD_TRIS_RS) || !defined(LCD_PORT_RS))
-    #error "Defina LCD_TRIS_RS e LCD_PORT_RS em 'lcd.h'"
-#endif
-#if (!defined(LCD_TRIS_D4) || !defined(LCD_PORT_D4))
-    #error "Defina LCD_TRIS_D4 e LCD_PORT_D4 em 'lcd.h'"
-#endif
-#if (!defined(LCD_TRIS_D5) || !defined(LCD_PORT_D5))
-    #error "Defina LCD_TRIS_D5 e LCD_PORT_D5 em 'lcd.h'"
-#endif
-#if (!defined(LCD_TRIS_D6) || !defined(LCD_PORT_D6))
-    #error "Defina LCD_TRIS_D6 e LCD_PORT_D6 em 'lcd.h'"
-#endif
-#if (!defined(LCD_TRIS_D7) || !defined(LCD_PORT_D7))
-    #error "Defina LCD_TRIS_D7 e LCD_PORT_D7 em 'lcd.h'"
-#endif
-
 #define LCD_FIRST_ROW           0x80   //Move cursor para 1ª linha
 #define LCD_SECOND_ROW          0xC0   //Move cursor para 2ª linha
 #define LCD_THIRD_ROW           0x94   //Move cursor para 3ª linha
@@ -66,7 +46,6 @@ void Lcd_Init(void) {
     char *value;
     LCD_TRIS_EN = 0;
     LCD_TRIS_RS = 0;
-//    LCD_TRIS_RW = 0;
     LCD_TRIS_D4 = 0;
     LCD_TRIS_D5 = 0;
     LCD_TRIS_D6 = 0;

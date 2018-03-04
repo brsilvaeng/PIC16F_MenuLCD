@@ -6,7 +6,6 @@
 //TRIS
 #define LCD_TRIS_EN             TRISCbits.TRISC1
 #define LCD_TRIS_RS             TRISCbits.TRISC0
-//#define LCD_TRIS_RW             TRISCbits.TRISC  NÃO TEM
 #define LCD_TRIS_D4             TRISCbits.TRISC2
 #define LCD_TRIS_D5             TRISCbits.TRISC3
 #define LCD_TRIS_D6             TRISCbits.TRISC4
@@ -14,7 +13,6 @@
 //PORT
 #define LCD_PORT_EN             PORTCbits.RC1
 #define LCD_PORT_RS             PORTCbits.RC0
-//#define LCD_PORT_RW             PORTCbits.RC NÃO TEM
 #define LCD_PORT_D4             PORTCbits.RC2
 #define LCD_PORT_D5             PORTCbits.RC3
 #define LCD_PORT_D6             PORTCbits.RC4

@@ -3,8 +3,10 @@
 #include "types.h"
 #include "delay.h"
 #include "lcd.h"
+#include "key.h"
+#include <stdio.h>
 
-void mudaLed(uint8 led, uint8 valor) {
+void Led_Muda(uint8 led, uint8 valor) {
     switch (led) {
         case 1: LED1 = valor; break;
         case 2: LED2 = valor; break;
@@ -13,6 +15,14 @@ void mudaLed(uint8 led, uint8 valor) {
     }
 }
 
+void Led_Oscila(void) {
+    static uint8 valor = LIGA;
+    valor = (valor == LIGA) ? DESLIGA : LIGA;
+    Led_Muda(1, valor);
+}
+
+
+
 void init(void) {
     OSCCONbits.IRCF = 0b111;    //oscilador interno em 8MHz (default -> 4MHz)
     ANSEL = 0;
@@ -20,26 +30,43 @@ void init(void) {
     PORTA = 0;
 }
 
-void tela(void) {
-    Lcd_PosStr(1, 1, " TELA DE        ");
-    Lcd_PosStr(1, 2, " REPOUSO        ");
+void Tela(char *str1, char *str2) {
+    Lcd_PosStr(1, 1, str1);
+    Lcd_PosStr(1, 2, str2);
 }
 
+
+
 void main(void) {
+    uint32 count = 0;
+    char str1[20], str2[20];
+    uint8 key_event;
     init();
     Lcd_Init();
-    tela();
-    uint8 led = 1;
-    uint8 valor = LIGA;
+    Key_Init();
     while (1) {
         CLRWDT();
-        Delay_Sec(1);        
-        mudaLed(led, valor);
-        if (led < 4) {
-            led++;
+        key_event = Key_AnyEvent();
+        if (key_event >= 0) {
+            sprintf(str1, " APORTOU BOTAO  ");
+            switch (key_event) {
+                case 0: sprintf(str2, " E FOI O CIMA   "); break;
+                case 1: sprintf(str2, " E FOI O BAIXO  "); break;
+                case 2: sprintf(str2, " E FOI O ENTRA  "); break;
+                case 3: sprintf(str2, " E FOI O SAI    "); break;
+            }
+            Led_Muda(2, LIGA);
+            Tela(str1, str2);
         } else {
-            led = 1;
-            valor = (valor == LIGA) ? DESLIGA : LIGA;
+            if (count > 0) {
+                count--;
+            } else {
+                Tela(" TELA DE        ", " REPOUSO        ");
+                Led_Muda(2, DESLIGA);
+                Led_Muda(3, DESLIGA);
+                Led_Muda(4, DESLIGA);
+                count = 1000;
+            }
         }
     }
 }
