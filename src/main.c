@@ -1,21 +1,10 @@
 #include "main.h"
+#include "defines.h"
+#include "types.h"
+#include "delay.h"
+#include "lcd.h"
 
-#define LED1        PORTAbits.RA0
-#define LED2        PORTAbits.RA1
-#define LED3        PORTAbits.RA2
-#define LED4        PORTAbits.RA3
-
-#define LIGA        1U
-#define DESLIGA     0U
-
-void pausa() {
-    unsigned long i;
-    for (i = 0; i < 100000; i++) {
-        CLRWDT();
-    }
-}
-
-void mudaLed(unsigned char led, unsigned char valor) {
+void mudaLed(uint8 led, uint8 valor) {
     switch (led) {
         case 1: LED1 = valor; break;
         case 2: LED2 = valor; break;
@@ -24,18 +13,27 @@ void mudaLed(unsigned char led, unsigned char valor) {
     }
 }
 
-void main(void) {
+void init(void) {
+    OSCCONbits.IRCF = 0b111;    //oscilador interno em 8MHz (default -> 4MHz)
     ANSEL = 0;
     TRISA = 0;
-    PORTA = 0xFF;
-    pausa();
     PORTA = 0;
-    pausa();
-    unsigned char led = 1;
-    unsigned char valor = LIGA;
+}
+
+void tela(void) {
+    Lcd_PosStr(1, 1, " TELA DE        ");
+    Lcd_PosStr(1, 2, " REPOUSO        ");
+}
+
+void main(void) {
+    init();
+    Lcd_Init();
+    tela();
+    uint8 led = 1;
+    uint8 valor = LIGA;
     while (1) {
         CLRWDT();
-        pausa();
+        Delay_Sec(1);        
         mudaLed(led, valor);
         if (led < 4) {
             led++;
@@ -44,5 +42,4 @@ void main(void) {
             valor = (valor == LIGA) ? DESLIGA : LIGA;
         }
     }
-    return;
 }
