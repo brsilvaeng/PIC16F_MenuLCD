@@ -9,4 +9,4 @@
 /MenuLCD.X/nbproject/Package-default.bash
 /sim/*PIC16F886_LCD.pdsbak
 /sim/PIC16F886_LCD.pdsprj.*
-/bin/*
+/*.hex
