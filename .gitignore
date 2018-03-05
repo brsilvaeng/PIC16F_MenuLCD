@@ -1,5 +1,6 @@
-/MenuLCD.X/dist/default/
-/MenuLCD.X/build/default/
+/MenuLCD.X/dist/
+/MenuLCD.X/debug/
+/MenuLCD.X/build/
 /MenuLCD.X/nbproject/private/
 /MenuLCD.X/nbproject/Makefile-default.mk
 /MenuLCD.X/nbproject/Makefile-genesis.properties

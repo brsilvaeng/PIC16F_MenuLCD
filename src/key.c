@@ -59,6 +59,7 @@ static uint8 Key_Event(uint8 key_i) {
 void Key_Init(void) {
     uint8 i;
 //    DIGITAL_SELECT = 7;
+    ANSELH = 0;
     KEY_CIMA_TRIS = 1;
     KEY_BAIXO_TRIS = 1;
     KEY_ENTRAR_TRIS = 1;

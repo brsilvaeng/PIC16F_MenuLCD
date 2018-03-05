@@ -30,9 +30,9 @@ void init(void) {
     PORTA = 0;
 }
 
-void Tela(char *str1, char *str2) {
-    Lcd_PosStr(1, 1, str1);
-    Lcd_PosStr(1, 2, str2);
+void Tela(const char *str1, const char *str2) {
+    Lcd_PosStr(1, 1, (char *)str1);
+    Lcd_PosStr(1, 2, (char *)str2);
 }
 
 
@@ -40,14 +40,14 @@ void Tela(char *str1, char *str2) {
 void main(void) {
     uint32 count = 0;
     char str1[20], str2[20];
-    uint8 key_event;
+    int8 key_event;
     init();
     Lcd_Init();
     Key_Init();
     while (1) {
         CLRWDT();
         key_event = Key_AnyEvent();
-        if (key_event >= 0) {
+        if ((key_event >= 0) && (Key_Press(key_event) == KEY_PRESS)) {
             sprintf(str1, " APORTOU BOTAO  ");
             switch (key_event) {
                 case 0: sprintf(str2, " E FOI O CIMA   "); break;

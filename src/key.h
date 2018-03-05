@@ -14,31 +14,31 @@
 #define KEY_CIMA_TRIS                   TRISBbits.TRISB0
 #define KEY_CIMA_PIN                    PORTBbits.RB0
 //SENSOR 1
-#define KEY_ENTRAR_TRIS                 TRISBbits.TRISB1
-#define KEY_ENTRAR_PIN                  PORTBbits.RB1
+#define KEY_ENTRAR_TRIS                 TRISBbits.TRISB2
+#define KEY_ENTRAR_PIN                  PORTBbits.RB2
 //SENSOR 2
-#define KEY_SAIR_TRIS                   TRISBbits.TRISB2
-#define KEY_SAIR_PIN                    PORTBbits.RB2
+#define KEY_SAIR_TRIS                   TRISBbits.TRISB3
+#define KEY_SAIR_PIN                    PORTBbits.RB3
 //BOTOEIRA
-#define KEY_BAIXO_TRIS                  TRISBbits.TRISB3
-#define KEY_BAIXO_PIN                   PORTBbits.RB3
+#define KEY_BAIXO_TRIS                  TRISBbits.TRISB1
+#define KEY_BAIXO_PIN                   PORTBbits.RB1
 
 #define KEY_DEBOUNCE                    100
 
-#define KEY_NOT_PRESS                   1
-#define KEY_PRESS                       0
+#define KEY_NOT_PRESS                   0
+#define KEY_PRESS                       1
 
-#define KEY_CIMA_VALUE_NOT_PRESS        0x00
-#define KEY_CIMA_VALUE_PRESS            0x01
+#define KEY_CIMA_VALUE_NOT_PRESS        KEY_NOT_PRESS
+#define KEY_CIMA_VALUE_PRESS            KEY_PRESS
 
-#define KEY_BAIXO_VALUE_NOT_PRESS       0x00
-#define KEY_BAIXO_VALUE_PRESS           0xFF
+#define KEY_BAIXO_VALUE_NOT_PRESS       KEY_NOT_PRESS
+#define KEY_BAIXO_VALUE_PRESS           KEY_PRESS
 
-#define KEY_ENTRAR_VALUE_NOT_PRESS      0xFF
-#define KEY_ENTRAR_VALUE_PRESS          0x00
+#define KEY_ENTRAR_VALUE_NOT_PRESS      KEY_NOT_PRESS
+#define KEY_ENTRAR_VALUE_PRESS          KEY_PRESS
 
-#define KEY_SAIR_VALUE_NOT_PRESS        0xFF
-#define KEY_SAIR_VALUE_PRESS            0x00
+#define KEY_SAIR_VALUE_NOT_PRESS        KEY_NOT_PRESS
+#define KEY_SAIR_VALUE_PRESS            KEY_PRESS
 
 
 void Key_Init(void);
