@@ -6,35 +6,12 @@
 #include "key.h"
 #include <stdio.h>
 
-typedef struct sCtrlLed {
-    uint32 count;
-    uint8 state;
-} TCtrlLed;
-
-TCtrlLed ctrl_led[4];
-
 void Led_Muda(uint8 led, uint8 valor) {
-    TCtrlLed *ctrl = &ctrl_led[led];
     switch (led) {
         case 0: LED0 = valor; break;
         case 1: LED1 = valor; break;
         case 2: LED2 = valor; break;
         case 3: LED3 = valor; break;
-    }
-    ctrl->count = 1000;
-    ctrl->state = valor;
-}
-
-void Led_ControlaLed(void) {
-    TCtrlLed *ctrl;
-    uint8 i;
-    for (i = 0; i < 4; i++) {
-        ctrl = &ctrl_led[i];
-        if (ctrl->count == 0) {
-            Led_Muda(i, DESLIGA);
-        } else {
-            ctrl->count--;
-        }
     }
 }
 
@@ -81,14 +58,13 @@ void main(void) {
     Tela(" TELA DE        ", " REPOUSO        ");
     while (1) {
         CLRWDT();
-        Led_ControlaLed();
         key_event = Key_AnyEvent();
         if (key_event < 0) {
             //se não tem evento, continua as iterações
             continue;
         }
         if (Key_Press(key_event) == KEY_NOT_PRESS) {
-            //se tem evento, mas é o de retorno do botão (volta ao estado inicial), continua as iterações
+            Led_Muda(key_event, DESLIGA);
             continue;
         }
         switch (key_event) {
