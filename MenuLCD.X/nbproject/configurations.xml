@@ -10,6 +10,7 @@
       <itemPath>../src/delay.h</itemPath>
       <itemPath>../src/lcd.h</itemPath>
       <itemPath>../src/key.h</itemPath>
+      <itemPath>../src/display.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -22,6 +23,7 @@
       <itemPath>../src/delay.c</itemPath>
       <itemPath>../src/lcd.c</itemPath>
       <itemPath>../src/key.c</itemPath>
+      <itemPath>../src/display.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

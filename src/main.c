@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "types.h"
 #include "delay.h"
-#include "lcd.h"
+#include "display.h"
 #include "key.h"
 #include <stdio.h>
 
@@ -15,31 +15,33 @@ void Led_Muda(uint8 led, uint8 valor) {
     }
 }
 
-
-void Tela(const char *str1, const char *str2) {
-    Lcd_PosStr(1, 1, (char *)str1);
-    Lcd_PosStr(1, 2, (char *)str2);
-}
-
-
-void Processa_BotaoCima(void) {
-    Tela(" APORTOU BOTAO  ", " E FOI O CIMA   ");
-    Led_Muda(0, LIGA);
-}
-
-void Processa_BotaoBaixo(void) {
-    Tela(" APORTOU BOTAO  ", " E FOI O BAIXO  ");
-    Led_Muda(1, LIGA);
-}
-
 void Processa_BotaoEntra(void) {
-    Tela(" APORTOU BOTAO  ", " E FOI O ENTRA  ");
-    Led_Muda(2, LIGA);
+    switch (Display_Menu()) {
+        case 1: Display_ChangeMenu(2); break;
+        case 2: Display_ChangeMenu(3); break;
+        case 3: Display_ChangeMenu(4); break;
+    }
 }
 
 void Processa_BotaoSai(void) {
-    Tela(" APORTOU BOTAO  ", " E FOI O SAI    ");
-    Led_Muda(3, LIGA);
+    switch (Display_Menu()) {
+        case 4: Display_ChangeMenu(3); break;
+        case 3: Display_ChangeMenu(2); break;
+        case 2: Display_ChangeMenu(1); break;
+        case 1: Display_ChangeMenu(0); break;
+    }
+}
+void Processa_Botao(uint8 botao) {
+    if (Display_Menu() == 0) {
+        Display_ChangeMenu(1);
+        return;
+    }
+    switch (botao) {
+        case 0: Display_ChangeOptUp();  break;
+        case 1: Display_ChangeOptDown(); break;
+        case 2: Processa_BotaoEntra(); break;
+        case 3: Processa_BotaoSai();   break;
+    }
 }
 
 void init(void) {
@@ -50,14 +52,13 @@ void init(void) {
 }
 
 void main(void) {
-//    char str1[20], str2[20];
     int8 key_event;
     init();
-    Lcd_Init();
     Key_Init();
-    Tela(" TELA DE        ", " REPOUSO        ");
+    Display_Init();
     while (1) {
         CLRWDT();
+        Display_Ctrl();
         key_event = Key_AnyEvent();
         if (key_event < 0) {
             //se não tem evento, continua as iterações
@@ -67,11 +68,7 @@ void main(void) {
             Led_Muda(key_event, DESLIGA);
             continue;
         }
-        switch (key_event) {
-            case 0: Processa_BotaoCima();  break;
-            case 1: Processa_BotaoBaixo(); break;
-            case 2: Processa_BotaoEntra(); break;
-            case 3: Processa_BotaoSai();   break;
-        }
+        Led_Muda(key_event, LIGA);
+        Processa_Botao(key_event);
     }
 }

@@ -18,6 +18,10 @@
 #define LCD_PORT_D6             PORTCbits.RC4
 #define LCD_PORT_D7             PORTCbits.RC5
 
+
+#define LCD_NUM_COL             16
+#define LCD_NUM_ROW             2
+
 void Lcd_Init(void);
 void Lcd_Cmd(char cmd);
 void Lcd_Chr(char chr);
