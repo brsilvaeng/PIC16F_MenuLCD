@@ -6,10 +6,10 @@
 #define FCY             (FOSC/4)
 #define _XTAL_FREQ      FOSC            //para funcoes de __delay_xs()
 
-#define LED1            PORTAbits.RA0
-#define LED2            PORTAbits.RA1
-#define LED3            PORTAbits.RA2
-#define LED4            PORTAbits.RA3
+#define LED0            PORTAbits.RA0
+#define LED1            PORTAbits.RA1
+#define LED2            PORTAbits.RA2
+#define LED3            PORTAbits.RA3
 
 #define LIGA            1U
 #define DESLIGA         0U
